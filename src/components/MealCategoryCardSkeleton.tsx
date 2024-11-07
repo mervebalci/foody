@@ -1,8 +1,8 @@
 import { Card, CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
 
-export default function MealCardSkeleton() {
+export default function MealCategoryCardSkeleton() {
   return (
-    <Card width={290} borderRadius={10} overflow={"hidden"}>
+    <Card>
       <Skeleton height={170} />
       <CardBody>
         <SkeletonText />
