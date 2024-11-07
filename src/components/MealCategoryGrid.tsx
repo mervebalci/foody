@@ -1,5 +1,6 @@
-import { Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import useMeals from "../hooks/useMeals";
+import MealCategoryCard from "./MealCategoryCard";
 
 export default function MealCategoryGrid() {
   const { meals, error } = useMeals();
@@ -7,11 +8,15 @@ export default function MealCategoryGrid() {
   return (
     <>
       {error && <Text>{error}</Text>}
-      <ul>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+        padding={5}
+        spacing={6}
+      >
         {meals.map((meal) => (
-          <li key={meal.idCategory}>{meal.strCategory}</li>
+          <MealCategoryCard key={meal.idCategory} meal={meal} />
         ))}
-      </ul>
+      </SimpleGrid>
     </>
   );
 }

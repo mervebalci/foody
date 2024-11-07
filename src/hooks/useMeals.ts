@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface MealCategory {
+export interface MealCategory {
   idCategory: string;
   strCategory: string;
   strCategoryDescription: string;
