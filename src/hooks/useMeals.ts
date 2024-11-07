@@ -16,23 +16,30 @@ interface FetchCategoriesResponse {
 const useMeals = () => {
   const [meals, setMeals] = useState<MealCategory[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
 
+    setIsLoading(true);
+
     apiClient
       .get<FetchCategoriesResponse>("/categories.php", { signal: signal })
-      .then((res) => setMeals(res.data.categories))
+      .then((res) => {
+        setMeals(res.data.categories);
+        setIsLoading(false);
+      })
       .catch((err) => {
         if (err instanceof CanceledError) return;
-        setError(err.message)
+        setError(err.message);
+        setIsLoading(false);
       });
 
     return () => controller.abort();
   }, []);
 
-  return { meals, error }
+  return { meals, error, isLoading };
 }
 
 export default useMeals;

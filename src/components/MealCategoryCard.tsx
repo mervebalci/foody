@@ -7,7 +7,7 @@ interface Props {
 
 export default function MealCategoryCard({ meal }: Props) {
   return (
-    <Card borderRadius={"10px"} overflow={"hidden"}>
+    <Card width={290} borderRadius={10} overflow={"hidden"}>
       <Image src={meal.strCategoryThumb} alt={meal.strCategory} />
       <CardBody textAlign={"center"}>
         <Heading fontSize={"2xl"}>{meal.strCategory}</Heading>
