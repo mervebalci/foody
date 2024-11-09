@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import MealCategoryGrid from "./components/MealCategoryGrid";
+import CountryList from "./components/CountryList";
 
 export default function App() {
   return (
@@ -14,7 +15,9 @@ export default function App() {
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem area={"aside"}>Aside</GridItem>
+        <GridItem area={"aside"}>
+          <CountryList />
+        </GridItem>
       </Show>
       <GridItem area={"main"}>
         <MealCategoryGrid />
