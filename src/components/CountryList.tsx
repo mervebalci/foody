@@ -34,12 +34,12 @@ import {
   ImageProps,
   List,
   ListItem,
+  Spinner,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 
 export default function CountryList() {
-  const { data } = useCountries();
+  const { data, isLoading, error } = useCountries();
 
   const flagMap: { [key: string]: ImageProps } = {
     American: { src: American, alt: "American Flag" },
@@ -72,6 +72,10 @@ export default function CountryList() {
     Unknown: { src: Unknown, alt: "Unknown Flag" },
     Vietnamese: { src: Vietnamese, alt: "Vietnamese Flag" },
   };
+
+  if (error) return null;
+
+  if (isLoading) return <Spinner marginTop={5} />;
 
   return (
     <List marginTop={5}>
