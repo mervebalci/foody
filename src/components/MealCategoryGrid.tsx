@@ -3,9 +3,13 @@ import useMeals from "../hooks/useMeals";
 import MealCategoryCard from "./MealCategoryCard";
 import MealCategoryCardSkeleton from "./MealCategoryCardSkeleton";
 import MealCategoryCardContainer from "./MealCategoryCardContainer";
+import useCategories from "../hooks/useCategories";
 
 export default function MealCategoryGrid() {
-  const { meals, error, isLoading } = useMeals();
+  const { data, error, isLoading } = useMeals();
+  const { categories } = useCategories();
+
+  console.log(categories);
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
@@ -28,9 +32,17 @@ export default function MealCategoryGrid() {
               <MealCategoryCardSkeleton key={skeleton} />
             </MealCategoryCardContainer>
           ))}
-        {meals.map((meal) => (
+        {data.map((meal, index) => (
           <MealCategoryCardContainer>
-            <MealCategoryCard key={meal.idCategory} meal={meal} />
+            <MealCategoryCard
+              key={meal.strCategory}
+              meal={meal}
+              category={
+                categories.find(
+                  (category) => meal.strCategory === category.strCategory
+                )!
+              }
+            />
           </MealCategoryCardContainer>
         ))}
       </SimpleGrid>
